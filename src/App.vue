@@ -1,11 +1,22 @@
 <template>
-  <nav>
+  <nav v-if="!store.state.isLoggedIn">
     <router-link to="/">Home</router-link>
     <router-link to="/about">About</router-link>
+    <router-link to="/login">Login</router-link>
     <router-link to="/signup">Signup</router-link>
   </nav>
   <router-view/>
+  {{ `The isLoggedIn: ${store.state.isLoggedIn}` }}
 </template>
+
+<script setup>
+import { useStore } from 'vuex';
+
+const store = useStore()
+
+//Change isLoggedIn to true
+store.commit('setIsLoggedIn')
+</script>
 
 <style>
 #app {
